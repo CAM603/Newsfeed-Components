@@ -12,7 +12,7 @@ let menuItems = [
 function menuMaker(arr) {
   // Create div for menu
   let menu = document.createElement('div');
-  menu.classList.add('.menu');
+  menu.classList.add('menu');
 
   // Create unordered list and append to menu
   let list = document.createElement('ul');
@@ -23,7 +23,15 @@ function menuMaker(arr) {
     let item = document.createElement('li');
     item.textContent = el;
     list.appendChild(item);
-  });
+  })
+
+  // let itemArr = arr.map(el => {
+  //   let item = document.createElement('li');
+  //   item.textContent = el;
+  //   return item;
+  // });
+
+  // itemArr.forEach(el => list.appendChild(el));
 
   let menuButton = document.querySelector('.menu-button');
   
@@ -31,14 +39,11 @@ function menuMaker(arr) {
     menu.classList.toggle('menu--open');
   })
   
-  let header = document.querySelector('.header');
-  return header.prepend(menu);
+  return menu;
 }
 
-menuMaker(menuItems);
-
-
-
+let header = document.querySelector('.header');
+header.appendChild(menuMaker(menuItems));
 
 
 /* 
