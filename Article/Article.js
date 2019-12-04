@@ -143,7 +143,7 @@ function articleCreator(object) {
   let button = document.createElement('span');
 
   // Add text to button so it shows up
-  button.textContent = 'Expand';
+  button.textContent = '▽';
 
   // Add class to span
   button.classList.add('expandButton');
@@ -152,21 +152,20 @@ function articleCreator(object) {
   article.appendChild(button);
 
   // Add event listener to button
-  button.addEventListener('click', function() {
+  button.addEventListener('click', function(event) {
     article.classList.toggle('article-open');
-    
+    event.target.textContent = '△';
   });
 
   // Add a close button that closes article
   let buttonClose = document.createElement('span');
   buttonClose.classList.add('closeButton');
-  buttonClose.textContent = 'Close';
+  buttonClose.textContent = '❌';
   article.appendChild(buttonClose);
 
   buttonClose.addEventListener('click', () => {
     article.style.display = 'none';
   });
-
   
   return article;
 }
@@ -177,6 +176,127 @@ let array = data.map(el => articleCreator(el));
 let articlesDiv = document.querySelector('.articles')
 array.forEach(el => articlesDiv.appendChild(el));
 
+// Create a form that will allow you to write your own article
+
+// Add article creator div to DOM
+let bod = document.querySelector('body');
+
+let createArticle = document.createElement('div');
+
+createArticle.classList.add('create');
+
+bod.appendChild(createArticle);
+
+// Create title header form and input
+let titleHeader = document.createElement('h3');
+titleHeader.textContent = 'Title'
+createArticle.appendChild(titleHeader);
+
+let titleForm = document.createElement('form');
+titleForm.id = "articleInfo";
+
+let titleInput = document.createElement('input');
+titleInput.type = 'text';
+titleForm.appendChild(titleInput);
+createArticle.appendChild(titleForm);
+
+// Create date header form and input
+let dateHeader = document.createElement('h3');
+dateHeader.textContent = 'Date'
+titleForm.appendChild(dateHeader);
+
+let dateInput = document.createElement('input');
+dateInput.type = 'text';
+titleForm.appendChild(dateInput);
+
+// Create textarea header form and input
+let textHeader = document.createElement('h3');
+textHeader.textContent = "Add your story here";
+titleForm.appendChild(textHeader);
+
+let textInput = document.createElement('textArea');
+textInput.type = 'text';
+titleForm.appendChild(textInput);
+
+// Create submit button
+let submitButton = document.createElement('button');
+submitButton.textContent = 'Submit';
+titleForm.appendChild(submitButton);
+
+// Add listener to form
+const addForm = document.forms['articleInfo'];
+
+addForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const value = addForm.querySelectorAll('input[type="text"], textarea');
+  //value.forEach(el => console.log(el.value))
+
+  function articleCreator(arr) {
+
+    // Create div
+    const article = document.createElement('div');
+  
+    // Add div class
+    article.classList.add('article');
+  
+    // Create h2
+    const title = document.createElement('h2');
+  
+    // Add h2 text content via parameter
+    title.textContent = arr[0].value;
+  
+    // Attach h2 to div
+    article.prepend(title);
+  
+    // Create paragraph 
+    const paragraph = document.createElement('p');
+  
+    // Add class to paragraph
+    paragraph.classList.add('date');
+  
+    // Add text to paragraph via parameter
+    paragraph.textContent = arr[1].value;
+  
+    // Add paragraph in div
+    article.appendChild(paragraph);
+  
+    // Create more paragraphs, add text content via parameters and add to div
+    let subParagraph1 = document.createElement('p');
+    subParagraph1.textContent = arr[2].value;
+    article.appendChild(subParagraph1);
+
+    // Create span
+    let button = document.createElement('span');
+  
+    // Add text to button so it shows up
+    button.textContent = '▽';
+  
+    // Add class to span
+    button.classList.add('expandButton');
+  
+    // Add to div
+    article.appendChild(button);
+  
+    // Add event listener to button
+    button.addEventListener('click', function(event) {
+      article.classList.toggle('article-open');
+      event.target.textContent = '△';
+    });
+  
+    // Add a close button that closes article
+    let buttonClose = document.createElement('span');
+    buttonClose.classList.add('closeButton');
+    buttonClose.textContent = '❌';
+    article.appendChild(buttonClose);
+  
+    buttonClose.addEventListener('click', () => {
+      article.style.display = 'none';
+    });
+    
+    return article;
+  }
+  articlesDiv.appendChild(articleCreator(value));
+});
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
