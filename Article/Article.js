@@ -88,6 +88,63 @@ const data = [
   }
 ];
 
+function componentMaker(obj) {
+  // Create article div
+  const article = document.createElement('div');
+  article.classList.add('article');
+
+  // Create h2
+  const header = document.createElement('h2');
+  // Add text content to h2
+  header.textContent = obj.title;
+
+  // Append header to article
+  article.appendChild(header);
+
+  // Create paragraph for date with class
+  const date = document.createElement('p');
+  date.classList.add('date');
+
+  // Give date text
+  date.textContent = obj.date;
+
+  // Add to article
+  article.appendChild(date);
+
+  // Create three paragraphs add text and attach to article
+  const p1 = document.createElement('p');
+  p1.textContent = obj.firstParagraph;
+  article.appendChild(p1);
+
+  const p2 = document.createElement('p');
+  p2.textContent = obj.secondParagraph;
+  article.appendChild(p2);
+
+  const p3 = document.createElement('p');
+  p3.textContent = obj.thirdParagraph;
+  article.appendChild(p3);
+
+  // Create button add class add text and append
+  let button = document.createElement('span');
+  button.classList.add('expandButton');
+  button.textContent = 'EXPAND';
+  article.appendChild(button);
+
+  // Give button event listener
+  button.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  });
+
+  return article
+}
+
+// Create array of articles
+let articlesArr = data.map(el => componentMaker(el));
+
+// Append articles to DOM
+let parent = document.querySelector('.articles');
+articlesArr.forEach(el => parent.appendChild(el));
+
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   
   <div class="article">
