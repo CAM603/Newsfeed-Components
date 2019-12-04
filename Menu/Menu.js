@@ -24,15 +24,23 @@ function menuCreator(arr) {
   // Add list to div
   menuDiv.appendChild(list);
 
-  // Create list items from array
+  //Create list items from array
   let itemArr = arr.map(el => {
     let item = document.createElement('li');
     item.textContent = el;
     return item;
   })
 
-  // Add list items to unordered list
+  //Add list items to unordered list
   itemArr.forEach(el => list.appendChild(el));
+
+  // Another possible solution
+
+  // arr.forEach(el => {
+  //   let item = document.createElement('li');
+  //   item.textContent = el;
+  //   list.appendChild(item);
+  // })
 
   // Add event listener to menu button
   let menuBtn = document.querySelector('.menu-button');
