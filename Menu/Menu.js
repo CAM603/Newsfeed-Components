@@ -46,8 +46,9 @@ function menuCreator(arr) {
   let menuBtn = document.querySelector('.menu-button');
   menuBtn.addEventListener('click', () => {
     menuDiv.classList.toggle('menu--open');
+    gsap.from(".menu--open", {duration: 2, xPercent: -150});
   })
-
+  
   return menuDiv;
 }
 
@@ -55,6 +56,7 @@ function menuCreator(arr) {
 
 let header = document.querySelector('.header');
 header.appendChild(menuCreator(menuItems));
+
 
 /* 
 

@@ -130,9 +130,11 @@ function articleCreator(object) {
   let subParagraph1 = document.createElement('p');
   subParagraph1.textContent = object.firstParagraph;
   article.appendChild(subParagraph1);
+
   let subParagraph2 = document.createElement('p');
   subParagraph2.textContent = object.secondParagraph;
   article.appendChild(subParagraph2);
+
   let subParagraph3 = document.createElement('p');
   subParagraph3.textContent = object.thirdParagraph;
   article.appendChild(subParagraph3);
@@ -152,7 +154,19 @@ function articleCreator(object) {
   // Add event listener to button
   button.addEventListener('click', function() {
     article.classList.toggle('article-open');
+    
   });
+
+  // Add a close button that closes article
+  let buttonClose = document.createElement('span');
+  buttonClose.classList.add('closeButton');
+  buttonClose.textContent = 'Close';
+  article.appendChild(buttonClose);
+
+  buttonClose.addEventListener('click', () => {
+    article.style.display = 'none';
+  });
+
   
   return article;
 }
