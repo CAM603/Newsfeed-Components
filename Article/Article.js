@@ -85,8 +85,211 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'First Lambda Student Hired by Elon Musk',
+    date: 'November 23rd, 2019',
+    firstParagraph: `Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before. Many say exploration is part of our destiny, but it’s actually our duty to future generations and their quest to ensure the survival of the human species.`,
+
+    secondParagraph: `Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before. Many say exploration is part of our destiny, but it’s actually our duty to future generations and their quest to ensure the survival of the human species.`,
+
+    thirdParagraph: `Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before. Many say exploration is part of our destiny, but it’s actually our duty to future generations and their quest to ensure the survival of the human species.`
   }
 ];
+
+function articleCreator(object) {
+
+  // Create div
+  const article = document.createElement('div');
+
+  // Add div class
+  article.classList.add('article');
+
+  // Create h2
+  const title = document.createElement('h2');
+
+  // Add h2 text content via parameter
+  title.textContent = object.title;
+
+  // Attach h2 to div
+  article.prepend(title);
+
+  // Create paragraph 
+  const paragraph = document.createElement('p');
+
+  // Add class to paragraph
+  paragraph.classList.add('date');
+
+  // Add text to paragraph via parameter
+  paragraph.textContent = object.date;
+
+  // Add paragraph in div
+  article.appendChild(paragraph);
+
+  // Create more paragraphs, add text content via parameters and add to div
+  let subParagraph1 = document.createElement('p');
+  subParagraph1.textContent = object.firstParagraph;
+  article.appendChild(subParagraph1);
+
+  let subParagraph2 = document.createElement('p');
+  subParagraph2.textContent = object.secondParagraph;
+  article.appendChild(subParagraph2);
+
+  let subParagraph3 = document.createElement('p');
+  subParagraph3.textContent = object.thirdParagraph;
+  article.appendChild(subParagraph3);
+
+  // Create span
+  let button = document.createElement('span');
+
+  // Add text to button so it shows up
+  button.textContent = '▽';
+
+  // Add class to span
+  button.classList.add('expandButton');
+
+  // Add to div
+  article.appendChild(button);
+
+  // Add event listener to button
+  button.addEventListener('click', function(event) {
+    article.classList.toggle('article-open');
+    event.target.textContent = '△';
+  });
+
+  // Add a close button that closes article
+  let buttonClose = document.createElement('span');
+  buttonClose.classList.add('closeButton');
+  buttonClose.textContent = '❌';
+  article.appendChild(buttonClose);
+
+  buttonClose.addEventListener('click', () => {
+    article.style.display = 'none';
+  });
+  
+  return article;
+}
+
+// Map over array and add articles to articles div
+let array = data.map(el => articleCreator(el));
+
+let articlesDiv = document.querySelector('.articles')
+array.forEach(el => articlesDiv.appendChild(el));
+
+// Create a form that will allow you to write your own article
+
+// Add article creator div to DOM
+let bod = document.querySelector('body');
+
+let createArticle = document.createElement('div');
+
+createArticle.classList.add('create');
+
+bod.appendChild(createArticle);
+
+
+let titleForm = document.createElement('form');
+titleForm.id = "articleInfo";
+
+// Create title header form and input
+let titleHeader = document.createElement('h3');
+titleHeader.textContent = 'Title'
+titleForm.appendChild(titleHeader);
+
+let titleInput = document.createElement('input');
+titleInput.type = 'text';
+titleForm.appendChild(titleInput);
+createArticle.appendChild(titleForm);
+
+
+// Create date header form and input
+let dateHeader = document.createElement('h3');
+dateHeader.textContent = 'Date'
+titleForm.appendChild(dateHeader);
+
+let dateInput = document.createElement('input');
+dateInput.type = 'text';
+titleForm.appendChild(dateInput);
+
+// Create textarea header form and input
+let textHeader = document.createElement('h3');
+textHeader.textContent = "Add your story here";
+titleForm.appendChild(textHeader);
+
+let textInput = document.createElement('textArea');
+textInput.type = 'text';
+titleForm.appendChild(textInput);
+
+// Create submit button
+let submitButton = document.createElement('button');
+submitButton.textContent = 'Submit';
+titleForm.appendChild(submitButton);
+
+// Add listener to form
+const addForm = document.forms['articleInfo'];
+
+addForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const value = addForm.querySelectorAll('input[type="text"], textarea');
+  //value.forEach(el => console.log(el.value))
+
+  function customArticleCreator(arr) {
+
+    // Create div
+    const article = document.createElement('div');
+    // Create h2
+    const title = document.createElement('h2');
+    // Create paragraph 
+    const paragraph = document.createElement('p');
+    // Create more paragraphs, add text content via parameters and add to div
+    const subParagraph = document.createElement('p');
+    // Create span
+    const button = document.createElement('span');
+  
+    // Add div class
+    article.classList.add('article');
+    // Add class to paragraph
+    paragraph.classList.add('date');
+    // Add class to span
+    button.classList.add('expandButton');
+  
+    // Add h2 text content 
+    title.textContent = arr[0].value;
+    // Add text to date
+    paragraph.textContent = arr[1].value;
+    // Add text to main paragraph
+    subParagraph.textContent = arr[2].value;
+    // Add text to button so it shows up
+    button.textContent = '▽';
+    
+    // Attach h2 to div
+    article.prepend(title);
+    // Add paragraph in div
+    article.appendChild(paragraph);
+    article.appendChild(subParagraph);
+    // Add to div
+    article.appendChild(button);
+  
+    // Add event listener to button
+    button.addEventListener('click', function(event) {
+      article.classList.toggle('article-open');
+      event.target.textContent = '△';
+    });
+  
+    // Add a close button that closes article
+    let buttonClose = document.createElement('span');
+    buttonClose.classList.add('closeButton');
+    buttonClose.textContent = '❌';
+    article.appendChild(buttonClose);
+  
+    buttonClose.addEventListener('click', () => {
+      article.style.display = 'none';
+    });
+
+    return article;
+  }
+  articlesDiv.appendChild(customArticleCreator(value));
+});
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
   

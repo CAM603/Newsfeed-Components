@@ -39,10 +39,48 @@
     transform: translate(-50%);
     background-color: white;
   }
+  .closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+    color: grey;
+    cursor: pointer;
+    transform: translate(-50%);
+    background-color: white;
+    color: red;
+  }
+}
+.create {
+  display: flex;
+  //align-items: center;
+  flex-direction: column;
+  margin: 20px 10%;
+  padding: 0 20px 25px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 2px 2px 2px lightgrey;
+
+  #articleInfo {
+    display: flex;
+    flex-direction: column;
+    
+    button {
+      width: 30%;
+      align-self: center;
+      margin-top: 10px;
+      padding: 15px;
+    }
+
+    
+  }
 }
 
 .article-open {
-  height: 400px;
+  height: auto;
 }
 
 
