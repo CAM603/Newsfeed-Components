@@ -231,49 +231,40 @@ addForm.addEventListener('submit', (event) => {
   const value = addForm.querySelectorAll('input[type="text"], textarea');
   //value.forEach(el => console.log(el.value))
 
-  function articleCreator(arr) {
+  function customArticleCreator(arr) {
 
     // Create div
     const article = document.createElement('div');
+    // Create h2
+    const title = document.createElement('h2');
+    // Create paragraph 
+    const paragraph = document.createElement('p');
+    // Create more paragraphs, add text content via parameters and add to div
+    const subParagraph = document.createElement('p');
+    // Create span
+    const button = document.createElement('span');
   
     // Add div class
     article.classList.add('article');
-  
-    // Create h2
-    const title = document.createElement('h2');
-  
-    // Add h2 text content via parameter
-    title.textContent = arr[0].value;
-  
-    // Attach h2 to div
-    article.prepend(title);
-  
-    // Create paragraph 
-    const paragraph = document.createElement('p');
-  
     // Add class to paragraph
     paragraph.classList.add('date');
-  
-    // Add text to paragraph via parameter
-    paragraph.textContent = arr[1].value;
-  
-    // Add paragraph in div
-    article.appendChild(paragraph);
-  
-    // Create more paragraphs, add text content via parameters and add to div
-    let subParagraph1 = document.createElement('p');
-    subParagraph1.textContent = arr[2].value;
-    article.appendChild(subParagraph1);
-
-    // Create span
-    let button = document.createElement('span');
-  
-    // Add text to button so it shows up
-    button.textContent = '▽';
-  
     // Add class to span
     button.classList.add('expandButton');
   
+    // Add h2 text content 
+    title.textContent = arr[0].value;
+    // Add text to date
+    paragraph.textContent = arr[1].value;
+    // Add text to main paragraph
+    subParagraph.textContent = arr[2].value;
+    // Add text to button so it shows up
+    button.textContent = '▽';
+    
+    // Attach h2 to div
+    article.prepend(title);
+    // Add paragraph in div
+    article.appendChild(paragraph);
+    article.appendChild(subParagraph);
     // Add to div
     article.appendChild(button);
   
@@ -292,10 +283,10 @@ addForm.addEventListener('submit', (event) => {
     buttonClose.addEventListener('click', () => {
       article.style.display = 'none';
     });
-    
+
     return article;
   }
-  articlesDiv.appendChild(articleCreator(value));
+  articlesDiv.appendChild(customArticleCreator(value));
 });
 
 /* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
