@@ -187,18 +187,20 @@ createArticle.classList.add('create');
 
 bod.appendChild(createArticle);
 
-// Create title header form and input
-let titleHeader = document.createElement('h3');
-titleHeader.textContent = 'Title'
-createArticle.appendChild(titleHeader);
 
 let titleForm = document.createElement('form');
 titleForm.id = "articleInfo";
+
+// Create title header form and input
+let titleHeader = document.createElement('h3');
+titleHeader.textContent = 'Title'
+titleForm.appendChild(titleHeader);
 
 let titleInput = document.createElement('input');
 titleInput.type = 'text';
 titleForm.appendChild(titleInput);
 createArticle.appendChild(titleForm);
+
 
 // Create date header form and input
 let dateHeader = document.createElement('h3');

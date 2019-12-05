@@ -86,7 +86,6 @@
 }
 .create {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   margin: 20px 10%;
   padding: 0 20px 25px;
@@ -96,6 +95,16 @@
   position: relative;
   overflow: hidden;
   box-shadow: 2px 2px 2px lightgrey;
+}
+.create #articleInfo {
+  display: flex;
+  flex-direction: column;
+}
+.create #articleInfo button {
+  width: 30%;
+  align-self: center;
+  margin-top: 10px;
+  padding: 15px;
 }
 .article-open {
   height: auto;
